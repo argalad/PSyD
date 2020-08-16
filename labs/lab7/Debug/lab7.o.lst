@@ -1,0 +1,333 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.file	"lab7.c"
+  21              	.Ltext0:
+  22              		.file 1 "../lab7.c"
+ 1878              		.align	2
+ 1879              	.LC0:
+ 1880 0000 41424344 		.ascii	"ABCDEFGHIJKLMN\321OPQRSTUVWXYZ\000"
+ 1880      45464748 
+ 1880      494A4B4C 
+ 1880      4D4ED14F 
+ 1880      50515253 
+ 1881              		.align	2
+ 1882              	.LC1:
+ 1883 001c 61626364 		.ascii	"abcdefghijklmn\361opqrstuvwxyz\000"
+ 1883      65666768 
+ 1883      696A6B6C 
+ 1883      6D6EF16F 
+ 1883      70717273 
+ 1884              		.align	2
+ 1885              	.LC2:
+ 1886 0038 30313233 		.ascii	"0123456789!$%&/()=^*+{}-.,;: \000"
+ 1886      34353637 
+ 1886      38392124 
+ 1886      25262F28 
+ 1886      293D5E2A 
+ 1887 0056 0000     		.align	2
+ 1888              	.LC3:
+ 1889 0058 41424344 		.ascii	"ABCDEFGHIJKLMN\321OP\000"
+ 1889      45464748 
+ 1889      494A4B4C 
+ 1889      4D4ED14F 
+ 1889      5000
+ 1890 006a 0000     		.align	2
+ 1891              	.LC4:
+ 1892 006c 61626364 		.ascii	"abcdefghijklmn\361op\000"
+ 1892      65666768 
+ 1892      696A6B6C 
+ 1892      6D6EF16F 
+ 1892      7000
+ 1893 007e 0000     		.align	2
+ 1894              	.LC5:
+ 1895 0080 30313233 		.ascii	"0123456789!$%&/()\000"
+ 1895      34353637 
+ 1895      38392124 
+ 1895      25262F28 
+ 1895      2900
+ 1896 0092 0000     		.text
+ 1897              		.align	2
+ 1898              		.global	main
+ 1900              	main:
+ 1901              	.LFB0:
+   1:../lab7.c     **** /*-------------------------------------------------------------------
+   2:../lab7.c     **** **
+   3:../lab7.c     **** **  Fichero:
+   4:../lab7.c     **** **    lab7.c  5/3/2015
+   5:../lab7.c     **** **
+   6:../lab7.c     **** **    (c) J.M. Mendias
+   7:../lab7.c     **** **    Programación de Sistemas y Dispositivos
+   8:../lab7.c     **** **    Facultad de Informática. Universidad Complutense de Madrid
+   9:../lab7.c     **** **
+  10:../lab7.c     **** **  Propósito:
+  11:../lab7.c     **** **    Test del laboratorio 7
+  12:../lab7.c     **** **
+  13:../lab7.c     **** **  Notas de diseño:
+  14:../lab7.c     **** **
+  15:../lab7.c     **** **-----------------------------------------------------------------*/
+  16:../lab7.c     **** 
+  17:../lab7.c     **** #include <s3c44b0x.h>
+  18:../lab7.c     **** #include <common_types.h>
+  19:../lab7.c     **** #include <system.h>
+  20:../lab7.c     **** #include <keypad.h>
+  21:../lab7.c     **** #include <lcd.h>
+  22:../lab7.c     **** 
+  23:../lab7.c     **** /*
+  24:../lab7.c     **** ** Direcciones en donde se encuentran cargados los BMP tras la ejecucion en
+  25:../lab7.c     **** ** la consola del depurador los comandos:
+  26:../lab7.c     **** **   cd <ruta>
+  27:../lab7.c     **** **   source load_bmp.txt
+  28:../lab7.c     **** */
+  29:../lab7.c     **** 
+  30:../lab7.c     **** #define ARBOL      ((uint8 *)0x0c210000)
+  31:../lab7.c     **** #define PADRINO    ((uint8 *)0x0c220000)
+  32:../lab7.c     **** #define PICACHU    ((uint8 *)0x0c230000)
+  33:../lab7.c     **** #define HARRY      ((uint8 *)0x0c240000)
+  34:../lab7.c     **** #define CHAPLIN    ((uint8 *)0x0c250000)
+  35:../lab7.c     **** #define PULP       ((uint8 *)0x0c260000)
+  36:../lab7.c     **** #define MAPA       ((uint8 *)0x0c270000)
+  37:../lab7.c     **** 
+  38:../lab7.c     **** void main( void )
+  39:../lab7.c     **** {
+ 1902              		.loc 1 39 0
+ 1903              		.cfi_startproc
+ 1904              		@ Function supports interworking.
+ 1905              		@ args = 0, pretend = 0, frame = 0
+ 1906              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1907 0000 0DC0A0E1 		mov	ip, sp
+ 1908              	.LCFI0:
+ 1909              		.cfi_def_cfa_register 12
+ 1910 0004 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 1911 0008 04B04CE2 		sub	fp, ip, #4
+ 1912              		.cfi_offset 14, -8
+ 1913              		.cfi_offset 13, -12
+ 1914              		.cfi_offset 11, -16
+ 1915              	.LCFI1:
+ 1916              		.cfi_def_cfa 11, 4
+ 1917 000c 08D04DE2 		sub	sp, sp, #8
+  40:../lab7.c     ****     sys_init();
+ 1918              		.loc 1 40 0
+ 1919 0010 FEFFFFEB 		bl	sys_init
+  41:../lab7.c     ****     keypad_init();
+ 1920              		.loc 1 41 0
+ 1921 0014 FEFFFFEB 		bl	keypad_init
+  42:../lab7.c     ****     lcd_init();
+ 1922              		.loc 1 42 0
+ 1923 0018 FEFFFFEB 		bl	lcd_init
+  43:../lab7.c     ****     
+  44:../lab7.c     ****     lcd_clear();
+ 1924              		.loc 1 44 0
+ 1925 001c FEFFFFEB 		bl	lcd_clear
+  45:../lab7.c     ****     lcd_on();
+ 1926              		.loc 1 45 0
+ 1927 0020 FEFFFFEB 		bl	lcd_on
+ 1928              	.L2:
+  46:../lab7.c     ****     
+  47:../lab7.c     ****     while( 1 )
+  48:../lab7.c     ****     {
+  49:../lab7.c     ****         /************************************/
+  50:../lab7.c     **** 
+  51:../lab7.c     ****         lcd_draw_box( 10, 10, 310, 230, BLACK, 5 );
+ 1929              		.loc 1 51 0 discriminator 1
+ 1930 0024 0F30A0E3 		mov	r3, #15
+ 1931 0028 00308DE5 		str	r3, [sp, #0]
+ 1932 002c 0530A0E3 		mov	r3, #5
+ 1933 0030 04308DE5 		str	r3, [sp, #4]
+ 1934 0034 0A00A0E3 		mov	r0, #10
+ 1935 0038 0A10A0E3 		mov	r1, #10
+ 1936 003c 2C219FE5 		ldr	r2, .L3
+ 1937 0040 E630A0E3 		mov	r3, #230
+ 1938 0044 FEFFFFEB 		bl	lcd_draw_box
+  52:../lab7.c     **** 
+  53:../lab7.c     ****         /************************************/
+  54:../lab7.c     **** 
+  55:../lab7.c     ****         lcd_puts( 20, 16, BLACK, "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" );
+ 1939              		.loc 1 55 0 discriminator 1
+ 1940 0048 1400A0E3 		mov	r0, #20
+ 1941 004c 1010A0E3 		mov	r1, #16
+ 1942 0050 0F20A0E3 		mov	r2, #15
+ 1943 0054 18319FE5 		ldr	r3, .L3+4
+ 1944 0058 FEFFFFEB 		bl	lcd_puts
+  56:../lab7.c     ****         lcd_puts( 20, 32, BLACK, "abcdefghijklmnñopqrstuvwxyz" );
+ 1945              		.loc 1 56 0 discriminator 1
+ 1946 005c 1400A0E3 		mov	r0, #20
+ 1947 0060 2010A0E3 		mov	r1, #32
+ 1948 0064 0F20A0E3 		mov	r2, #15
+ 1949 0068 08319FE5 		ldr	r3, .L3+8
+ 1950 006c FEFFFFEB 		bl	lcd_puts
+  57:../lab7.c     ****         lcd_puts( 20, 48, BLACK, "0123456789!$%&/()=^*+{}-.,;: " );
+ 1951              		.loc 1 57 0 discriminator 1
+ 1952 0070 1400A0E3 		mov	r0, #20
+ 1953 0074 3010A0E3 		mov	r1, #48
+ 1954 0078 0F20A0E3 		mov	r2, #15
+ 1955 007c F8309FE5 		ldr	r3, .L3+12
+ 1956 0080 FEFFFFEB 		bl	lcd_puts
+  58:../lab7.c     ****         lcd_putint( 20, 64, BLACK, 1234567890 );
+ 1957              		.loc 1 58 0 discriminator 1
+ 1958 0084 1400A0E3 		mov	r0, #20
+ 1959 0088 4010A0E3 		mov	r1, #64
+ 1960 008c 0F20A0E3 		mov	r2, #15
+ 1961 0090 E8309FE5 		ldr	r3, .L3+16
+ 1962 0094 FEFFFFEB 		bl	lcd_putint
+  59:../lab7.c     ****         lcd_puthex( 108, 64, BLACK, 0xabcdef );
+ 1963              		.loc 1 59 0 discriminator 1
+ 1964 0098 6C00A0E3 		mov	r0, #108
+ 1965 009c 4010A0E3 		mov	r1, #64
+ 1966 00a0 0F20A0E3 		mov	r2, #15
+ 1967 00a4 D8309FE5 		ldr	r3, .L3+20
+ 1968 00a8 FEFFFFEB 		bl	lcd_puthex
+  60:../lab7.c     **** 
+  61:../lab7.c     ****         /************************************/
+  62:../lab7.c     **** 
+  63:../lab7.c     ****         lcd_puts_x2( 20, 80, BLACK, "ABCDEFGHIJKLMNÑOP" );
+ 1969              		.loc 1 63 0 discriminator 1
+ 1970 00ac 1400A0E3 		mov	r0, #20
+ 1971 00b0 5010A0E3 		mov	r1, #80
+ 1972 00b4 0F20A0E3 		mov	r2, #15
+ 1973 00b8 C8309FE5 		ldr	r3, .L3+24
+ 1974 00bc FEFFFFEB 		bl	lcd_puts_x2
+  64:../lab7.c     ****         lcd_puts_x2( 20, 112, BLACK, "abcdefghijklmnñop" );
+ 1975              		.loc 1 64 0 discriminator 1
+ 1976 00c0 1400A0E3 		mov	r0, #20
+ 1977 00c4 7010A0E3 		mov	r1, #112
+ 1978 00c8 0F20A0E3 		mov	r2, #15
+ 1979 00cc B8309FE5 		ldr	r3, .L3+28
+ 1980 00d0 FEFFFFEB 		bl	lcd_puts_x2
+  65:../lab7.c     ****         lcd_puts_x2( 20, 144, BLACK, "0123456789!$%&/()" );
+ 1981              		.loc 1 65 0 discriminator 1
+ 1982 00d4 1400A0E3 		mov	r0, #20
+ 1983 00d8 9010A0E3 		mov	r1, #144
+ 1984 00dc 0F20A0E3 		mov	r2, #15
+ 1985 00e0 A8309FE5 		ldr	r3, .L3+32
+ 1986 00e4 FEFFFFEB 		bl	lcd_puts_x2
+  66:../lab7.c     ****         lcd_putint_x2( 20, 176, BLACK, 1234567890 );
+ 1987              		.loc 1 66 0 discriminator 1
+ 1988 00e8 1400A0E3 		mov	r0, #20
+ 1989 00ec B010A0E3 		mov	r1, #176
+ 1990 00f0 0F20A0E3 		mov	r2, #15
+ 1991 00f4 84309FE5 		ldr	r3, .L3+16
+ 1992 00f8 FEFFFFEB 		bl	lcd_putint_x2
+  67:../lab7.c     ****         lcd_puthex_x2( 196, 176, BLACK, 0xabcdef );
+ 1993              		.loc 1 67 0 discriminator 1
+ 1994 00fc C400A0E3 		mov	r0, #196
+ 1995 0100 B010A0E3 		mov	r1, #176
+ 1996 0104 0F20A0E3 		mov	r2, #15
+ 1997 0108 74309FE5 		ldr	r3, .L3+20
+ 1998 010c FEFFFFEB 		bl	lcd_puthex_x2
+  68:../lab7.c     **** 
+  69:../lab7.c     ****         /************************************/
+  70:../lab7.c     **** 
+  71:../lab7.c     ****         keypad_wait_any_keyup();
+ 1999              		.loc 1 71 0 discriminator 1
+ 2000 0110 FEFFFFEB 		bl	keypad_wait_any_keyup
+  72:../lab7.c     ****         lcd_putWallpaper( ARBOL );
+ 2001              		.loc 1 72 0 discriminator 1
+ 2002 0114 78009FE5 		ldr	r0, .L3+36
+ 2003 0118 FEFFFFEB 		bl	lcd_putWallpaper
+  73:../lab7.c     ****         keypad_wait_any_keyup();
+ 2004              		.loc 1 73 0 discriminator 1
+ 2005 011c FEFFFFEB 		bl	keypad_wait_any_keyup
+  74:../lab7.c     ****         lcd_putWallpaper( PADRINO );
+ 2006              		.loc 1 74 0 discriminator 1
+ 2007 0120 70009FE5 		ldr	r0, .L3+40
+ 2008 0124 FEFFFFEB 		bl	lcd_putWallpaper
+  75:../lab7.c     ****         keypad_wait_any_keyup();
+ 2009              		.loc 1 75 0 discriminator 1
+ 2010 0128 FEFFFFEB 		bl	keypad_wait_any_keyup
+  76:../lab7.c     ****         lcd_putWallpaper( PICACHU );
+ 2011              		.loc 1 76 0 discriminator 1
+ 2012 012c 68009FE5 		ldr	r0, .L3+44
+ 2013 0130 FEFFFFEB 		bl	lcd_putWallpaper
+  77:../lab7.c     ****         keypad_wait_any_keyup();
+ 2014              		.loc 1 77 0 discriminator 1
+ 2015 0134 FEFFFFEB 		bl	keypad_wait_any_keyup
+  78:../lab7.c     ****         lcd_putWallpaper( HARRY );
+ 2016              		.loc 1 78 0 discriminator 1
+ 2017 0138 60009FE5 		ldr	r0, .L3+48
+ 2018 013c FEFFFFEB 		bl	lcd_putWallpaper
+  79:../lab7.c     ****         keypad_wait_any_keyup();
+ 2019              		.loc 1 79 0 discriminator 1
+ 2020 0140 FEFFFFEB 		bl	keypad_wait_any_keyup
+  80:../lab7.c     ****         lcd_putWallpaper( CHAPLIN );
+ 2021              		.loc 1 80 0 discriminator 1
+ 2022 0144 58009FE5 		ldr	r0, .L3+52
+ 2023 0148 FEFFFFEB 		bl	lcd_putWallpaper
+  81:../lab7.c     ****         keypad_wait_any_keyup();
+ 2024              		.loc 1 81 0 discriminator 1
+ 2025 014c FEFFFFEB 		bl	keypad_wait_any_keyup
+  82:../lab7.c     ****         lcd_putWallpaper( PULP );
+ 2026              		.loc 1 82 0 discriminator 1
+ 2027 0150 50009FE5 		ldr	r0, .L3+56
+ 2028 0154 FEFFFFEB 		bl	lcd_putWallpaper
+  83:../lab7.c     ****         keypad_wait_any_keyup();
+ 2029              		.loc 1 83 0 discriminator 1
+ 2030 0158 FEFFFFEB 		bl	keypad_wait_any_keyup
+  84:../lab7.c     ****         lcd_putWallpaper( MAPA );
+ 2031              		.loc 1 84 0 discriminator 1
+ 2032 015c 48009FE5 		ldr	r0, .L3+60
+ 2033 0160 FEFFFFEB 		bl	lcd_putWallpaper
+  85:../lab7.c     **** 
+  86:../lab7.c     ****         /************************************/
+  87:../lab7.c     **** 
+  88:../lab7.c     ****         keypad_wait_any_keyup();
+ 2034              		.loc 1 88 0 discriminator 1
+ 2035 0164 FEFFFFEB 		bl	keypad_wait_any_keyup
+  89:../lab7.c     ****         lcd_clear();
+ 2036              		.loc 1 89 0 discriminator 1
+ 2037 0168 FEFFFFEB 		bl	lcd_clear
+  90:../lab7.c     ****     }
+ 2038              		.loc 1 90 0 discriminator 1
+ 2039 016c ACFFFFEA 		b	.L2
+ 2040              	.L4:
+ 2041              		.align	2
+ 2042              	.L3:
+ 2043 0170 36010000 		.word	310
+ 2044 0174 00000000 		.word	.LC0
+ 2045 0178 1C000000 		.word	.LC1
+ 2046 017c 38000000 		.word	.LC2
+ 2047 0180 D2029649 		.word	1234567890
+ 2048 0184 EFCDAB00 		.word	11259375
+ 2049 0188 58000000 		.word	.LC3
+ 2050 018c 6C000000 		.word	.LC4
+ 2051 0190 80000000 		.word	.LC5
+ 2052 0194 0000210C 		.word	203489280
+ 2053 0198 0000220C 		.word	203554816
+ 2054 019c 0000230C 		.word	203620352
+ 2055 01a0 0000240C 		.word	203685888
+ 2056 01a4 0000250C 		.word	203751424
+ 2057 01a8 0000260C 		.word	203816960
+ 2058 01ac 0000270C 		.word	203882496
+ 2059              		.cfi_endproc
+ 2060              	.LFE0:
+ 2062              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 lab7.c
+C:\Users\USUARI~2\AppData\Local\Temp\ccTIHaQx.s:1878   .rodata:00000000 $d
+C:\Users\USUARI~2\AppData\Local\Temp\ccTIHaQx.s:1897   .text:00000000 $a
+C:\Users\USUARI~2\AppData\Local\Temp\ccTIHaQx.s:1900   .text:00000000 main
+C:\Users\USUARI~2\AppData\Local\Temp\ccTIHaQx.s:2043   .text:00000170 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+sys_init
+keypad_init
+lcd_init
+lcd_clear
+lcd_on
+lcd_draw_box
+lcd_puts
+lcd_putint
+lcd_puthex
+lcd_puts_x2
+lcd_putint_x2
+lcd_puthex_x2
+keypad_wait_any_keyup
+lcd_putWallpaper

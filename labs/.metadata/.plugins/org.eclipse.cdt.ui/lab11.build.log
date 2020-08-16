@@ -1,0 +1,35 @@
+12:22:21 **** Build of configuration Debug for project lab11 ****
+cs-make all 
+'Building file: ../bootloader.asm'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -I"..\..\BSP\include" -Wall -Wa,-adhlns="bootloader.o.lst" -c -fmessage-length=0 -MMD -MP -MF"bootloader.d" -MT"bootloader.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "bootloader.o" "../bootloader.asm"
+'Finished building: ../bootloader.asm'
+' '
+'Building file: ../lab11.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -I"..\..\BSP\include" -O0 -Wall -Wa,-adhlns="lab11.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"lab11.d" -MT"lab11.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "lab11.o" "../lab11.c"
+../lab11.c:25:6: warning: return type of 'main' is not 'int'
+'Finished building: ../lab11.c'
+' '
+'Building target: lab11.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"../lab11.ld" -nostartfiles -L../../BSP/Debug -Wl,-Map,lab11.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "lab11.elf"  ./bootloader.o ./lab11.o   -lBSP
+'Finished building target: lab11.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary lab11.elf  "lab11.hex"
+'Finished building: lab11.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S lab11.elf > "lab11.lst"
+'Finished building: lab11.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley lab11.elf
+   text	   data	    bss	    dec	    hex	filename
+  12116	      0	      0	  12116	   2f54	lab11.elf
+'Finished building: lab11.siz'
+' '
+
+12:22:26 Build Finished (took 4s.657ms)
+

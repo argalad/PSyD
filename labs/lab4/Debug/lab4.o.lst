@@ -1,0 +1,318 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.file	"lab4.c"
+  21              	.Ltext0:
+  22              		.file 1 "../lab4.c"
+ 1052              		.align	2
+ 1053              	.LC0:
+ 1054 0000 0A0A4573 		.ascii	"\012\012Este programa fue compilado el dia \000"
+ 1054      74652070 
+ 1054      726F6772 
+ 1054      616D6120 
+ 1054      66756520 
+ 1055 0026 0000     		.align	2
+ 1056              	.LC1:
+ 1057 0028 4F637420 		.ascii	"Oct 14 2019\000"
+ 1057      31342032 
+ 1057      30313900 
+ 1058              		.align	2
+ 1059              	.LC2:
+ 1060 0034 2061206C 		.ascii	" a las \000"
+ 1060      61732000 
+ 1061              		.align	2
+ 1062              	.LC3:
+ 1063 003c 31313A31 		.ascii	"11:15:43\000"
+ 1063      353A3433 
+ 1063      00
+ 1064 0045 000000   		.align	2
+ 1065              	.LC4:
+ 1066 0048 0A00     		.ascii	"\012\000"
+ 1067 004a 0000     		.align	2
+ 1068              	.LC5:
+ 1069 004c 20202D20 		.ascii	"  - Escriba algo: \000"
+ 1069      45736372 
+ 1069      69626120 
+ 1069      616C676F 
+ 1069      3A2000
+ 1070 005f 00       		.align	2
+ 1071              	.LC6:
+ 1072 0060 20202D20 		.ascii	"  - Ha escrito: \000"
+ 1072      48612065 
+ 1072      73637269 
+ 1072      746F3A20 
+ 1072      00
+ 1073 0071 000000   		.align	2
+ 1074              	.LC7:
+ 1075 0074 20202D20 		.ascii	"  - Escriba su nombre: \000"
+ 1075      45736372 
+ 1075      69626120 
+ 1075      7375206E 
+ 1075      6F6D6272 
+ 1076              		.align	2
+ 1077              	.LC8:
+ 1078 008c 20202D20 		.ascii	"  - Escriba su edad: \000"
+ 1078      45736372 
+ 1078      69626120 
+ 1078      73752065 
+ 1078      6461643A 
+ 1079 00a2 0000     		.align	2
+ 1080              	.LC9:
+ 1081 00a4 20202D20 		.ascii	"  - D. \000"
+ 1081      442E2000 
+ 1082              		.align	2
+ 1083              	.LC10:
+ 1084 00ac 2C207469 		.ascii	", tiene \000"
+ 1084      656E6520 
+ 1084      00
+ 1085 00b5 000000   		.align	2
+ 1086              	.LC11:
+ 1087 00b8 20616E6E 		.ascii	" annos.\012\000"
+ 1087      6F732E0A 
+ 1087      00
+ 1088 00c1 000000   		.align	2
+ 1089              	.LC12:
+ 1090 00c4 20202D20 		.ascii	"  - Escriba un numero hexadecimal: \000"
+ 1090      45736372 
+ 1090      69626120 
+ 1090      756E206E 
+ 1090      756D6572 
+ 1091              		.align	2
+ 1092              	.LC13:
+ 1093 00e8 20202D20 		.ascii	"  - Ha escrito 0x\000"
+ 1093      48612065 
+ 1093      73637269 
+ 1093      746F2030 
+ 1093      7800
+ 1094 00fa 0000     		.align	2
+ 1095              	.LC14:
+ 1096 00fc 202800   		.ascii	" (\000"
+ 1097 00ff 00       		.align	2
+ 1098              	.LC15:
+ 1099 0100 292E0A00 		.ascii	").\012\000"
+ 1100              		.text
+ 1101              		.align	2
+ 1102              		.global	main
+ 1104              	main:
+ 1105              	.LFB0:
+   1:../lab4.c     **** /*-------------------------------------------------------------------
+   2:../lab4.c     **** **
+   3:../lab4.c     **** **  Fichero:
+   4:../lab4.c     **** **    lab4.c  13/3/2014
+   5:../lab4.c     **** **
+   6:../lab4.c     **** **    (c) J.M. Mendias
+   7:../lab4.c     **** **    Programación de Sistemas y Dispositivos
+   8:../lab4.c     **** **    Facultad de Informática. Universidad Complutense de Madrid
+   9:../lab4.c     **** **
+  10:../lab4.c     **** **  Propósito:
+  11:../lab4.c     **** **    Test del laboratorio 4
+  12:../lab4.c     **** **
+  13:../lab4.c     **** **  Notas de diseño:
+  14:../lab4.c     **** **
+  15:../lab4.c     **** **-----------------------------------------------------------------*/
+  16:../lab4.c     **** 
+  17:../lab4.c     **** #include <common_types.h>
+  18:../lab4.c     **** #include "systemLab4.h"
+  19:../lab4.c     **** #include <uart.h>
+  20:../lab4.c     **** 
+  21:../lab4.c     **** void main( void )
+  22:../lab4.c     **** {
+ 1106              		.loc 1 22 0
+ 1107              		.cfi_startproc
+ 1108              		@ Function supports interworking.
+ 1109              		@ args = 0, pretend = 0, frame = 264
+ 1110              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1111 0000 0DC0A0E1 		mov	ip, sp
+ 1112              	.LCFI0:
+ 1113              		.cfi_def_cfa_register 12
+ 1114 0004 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 1115 0008 04B04CE2 		sub	fp, ip, #4
+ 1116              		.cfi_offset 14, -8
+ 1117              		.cfi_offset 13, -12
+ 1118              		.cfi_offset 11, -16
+ 1119              	.LCFI1:
+ 1120              		.cfi_def_cfa 11, 4
+ 1121 000c 42DF4DE2 		sub	sp, sp, #264
+  23:../lab4.c     ****     char   s[256];
+  24:../lab4.c     ****     int32  i = 0;
+ 1122              		.loc 1 24 0
+ 1123 0010 0030A0E3 		mov	r3, #0
+ 1124 0014 10300BE5 		str	r3, [fp, #-16]
+  25:../lab4.c     ****     uint32 u = 0;
+ 1125              		.loc 1 25 0
+ 1126 0018 0030A0E3 		mov	r3, #0
+ 1127 001c 14300BE5 		str	r3, [fp, #-20]
+  26:../lab4.c     ****     
+  27:../lab4.c     ****     sys_init();
+ 1128              		.loc 1 27 0
+ 1129 0020 FEFFFFEB 		bl	sys_init
+  28:../lab4.c     ****     uart0_init();
+ 1130              		.loc 1 28 0
+ 1131 0024 FEFFFFEB 		bl	uart0_init
+  29:../lab4.c     **** 
+  30:../lab4.c     ****     /************************************/
+  31:../lab4.c     **** 
+  32:../lab4.c     ****     uart0_puts( "\n\nEste programa fue compilado el dia " );
+ 1132              		.loc 1 32 0
+ 1133 0028 E0009FE5 		ldr	r0, .L3
+ 1134 002c FEFFFFEB 		bl	uart0_puts
+  33:../lab4.c     ****     uart0_puts( __DATE__ );
+ 1135              		.loc 1 33 0
+ 1136 0030 DC009FE5 		ldr	r0, .L3+4
+ 1137 0034 FEFFFFEB 		bl	uart0_puts
+  34:../lab4.c     ****     uart0_puts( " a las " );
+ 1138              		.loc 1 34 0
+ 1139 0038 D8009FE5 		ldr	r0, .L3+8
+ 1140 003c FEFFFFEB 		bl	uart0_puts
+  35:../lab4.c     ****     uart0_puts( __TIME__ );
+ 1141              		.loc 1 35 0
+ 1142 0040 D4009FE5 		ldr	r0, .L3+12
+ 1143 0044 FEFFFFEB 		bl	uart0_puts
+  36:../lab4.c     ****     uart0_puts( "\n" );
+ 1144              		.loc 1 36 0
+ 1145 0048 D0009FE5 		ldr	r0, .L3+16
+ 1146 004c FEFFFFEB 		bl	uart0_puts
+ 1147              	.L2:
+  37:../lab4.c     **** 
+  38:../lab4.c     ****     /************************************/
+  39:../lab4.c     **** 
+  40:../lab4.c     ****     while( 1 ){
+  41:../lab4.c     ****         uart0_puts( "  - Escriba algo: " );
+ 1148              		.loc 1 41 0 discriminator 1
+ 1149 0050 CC009FE5 		ldr	r0, .L3+20
+ 1150 0054 FEFFFFEB 		bl	uart0_puts
+  42:../lab4.c     ****         uart0_gets( s );
+ 1151              		.loc 1 42 0 discriminator 1
+ 1152 0058 453F4BE2 		sub	r3, fp, #276
+ 1153 005c 0300A0E1 		mov	r0, r3
+ 1154 0060 FEFFFFEB 		bl	uart0_gets
+  43:../lab4.c     ****         uart0_puts( "  - Ha escrito: " );
+ 1155              		.loc 1 43 0 discriminator 1
+ 1156 0064 BC009FE5 		ldr	r0, .L3+24
+ 1157 0068 FEFFFFEB 		bl	uart0_puts
+  44:../lab4.c     ****         uart0_puts( s );
+ 1158              		.loc 1 44 0 discriminator 1
+ 1159 006c 453F4BE2 		sub	r3, fp, #276
+ 1160 0070 0300A0E1 		mov	r0, r3
+ 1161 0074 FEFFFFEB 		bl	uart0_puts
+  45:../lab4.c     ****         uart0_putchar( '\n' );
+ 1162              		.loc 1 45 0 discriminator 1
+ 1163 0078 0A00A0E3 		mov	r0, #10
+ 1164 007c FEFFFFEB 		bl	uart0_putchar
+  46:../lab4.c     ****         uart0_puts( "  - Escriba su nombre: " );
+ 1165              		.loc 1 46 0 discriminator 1
+ 1166 0080 A4009FE5 		ldr	r0, .L3+28
+ 1167 0084 FEFFFFEB 		bl	uart0_puts
+  47:../lab4.c     ****         uart0_gets( s );
+ 1168              		.loc 1 47 0 discriminator 1
+ 1169 0088 453F4BE2 		sub	r3, fp, #276
+ 1170 008c 0300A0E1 		mov	r0, r3
+ 1171 0090 FEFFFFEB 		bl	uart0_gets
+  48:../lab4.c     ****         uart0_puts( "  - Escriba su edad: ");
+ 1172              		.loc 1 48 0 discriminator 1
+ 1173 0094 94009FE5 		ldr	r0, .L3+32
+ 1174 0098 FEFFFFEB 		bl	uart0_puts
+  49:../lab4.c     ****         i = uart0_getint();
+ 1175              		.loc 1 49 0 discriminator 1
+ 1176 009c FEFFFFEB 		bl	uart0_getint
+ 1177 00a0 10000BE5 		str	r0, [fp, #-16]
+  50:../lab4.c     ****         uart0_puts( "  - D. " );
+ 1178              		.loc 1 50 0 discriminator 1
+ 1179 00a4 88009FE5 		ldr	r0, .L3+36
+ 1180 00a8 FEFFFFEB 		bl	uart0_puts
+  51:../lab4.c     ****         uart0_puts( s );
+ 1181              		.loc 1 51 0 discriminator 1
+ 1182 00ac 453F4BE2 		sub	r3, fp, #276
+ 1183 00b0 0300A0E1 		mov	r0, r3
+ 1184 00b4 FEFFFFEB 		bl	uart0_puts
+  52:../lab4.c     ****         uart0_puts( ", tiene " );
+ 1185              		.loc 1 52 0 discriminator 1
+ 1186 00b8 78009FE5 		ldr	r0, .L3+40
+ 1187 00bc FEFFFFEB 		bl	uart0_puts
+  53:../lab4.c     ****         uart0_putint( i );
+ 1188              		.loc 1 53 0 discriminator 1
+ 1189 00c0 10001BE5 		ldr	r0, [fp, #-16]
+ 1190 00c4 FEFFFFEB 		bl	uart0_putint
+  54:../lab4.c     ****         uart0_puts( " annos.\n" );
+ 1191              		.loc 1 54 0 discriminator 1
+ 1192 00c8 6C009FE5 		ldr	r0, .L3+44
+ 1193 00cc FEFFFFEB 		bl	uart0_puts
+  55:../lab4.c     ****         uart0_puts( "  - Escriba un numero hexadecimal: ");
+ 1194              		.loc 1 55 0 discriminator 1
+ 1195 00d0 68009FE5 		ldr	r0, .L3+48
+ 1196 00d4 FEFFFFEB 		bl	uart0_puts
+  56:../lab4.c     ****         u = uart0_gethex();
+ 1197              		.loc 1 56 0 discriminator 1
+ 1198 00d8 FEFFFFEB 		bl	uart0_gethex
+ 1199 00dc 14000BE5 		str	r0, [fp, #-20]
+  57:../lab4.c     ****         uart0_puts( "  - Ha escrito 0x" );
+ 1200              		.loc 1 57 0 discriminator 1
+ 1201 00e0 5C009FE5 		ldr	r0, .L3+52
+ 1202 00e4 FEFFFFEB 		bl	uart0_puts
+  58:../lab4.c     ****         uart0_puthex( u );
+ 1203              		.loc 1 58 0 discriminator 1
+ 1204 00e8 14001BE5 		ldr	r0, [fp, #-20]
+ 1205 00ec FEFFFFEB 		bl	uart0_puthex
+  59:../lab4.c     ****         uart0_puts( " (" );
+ 1206              		.loc 1 59 0 discriminator 1
+ 1207 00f0 50009FE5 		ldr	r0, .L3+56
+ 1208 00f4 FEFFFFEB 		bl	uart0_puts
+  60:../lab4.c     ****         uart0_putint( u );
+ 1209              		.loc 1 60 0 discriminator 1
+ 1210 00f8 14301BE5 		ldr	r3, [fp, #-20]
+ 1211 00fc 0300A0E1 		mov	r0, r3
+ 1212 0100 FEFFFFEB 		bl	uart0_putint
+  61:../lab4.c     ****         uart0_puts( ").\n" );
+ 1213              		.loc 1 61 0 discriminator 1
+ 1214 0104 40009FE5 		ldr	r0, .L3+60
+ 1215 0108 FEFFFFEB 		bl	uart0_puts
+  62:../lab4.c     ****     };
+ 1216              		.loc 1 62 0 discriminator 1
+ 1217 010c CFFFFFEA 		b	.L2
+ 1218              	.L4:
+ 1219              		.align	2
+ 1220              	.L3:
+ 1221 0110 00000000 		.word	.LC0
+ 1222 0114 28000000 		.word	.LC1
+ 1223 0118 34000000 		.word	.LC2
+ 1224 011c 3C000000 		.word	.LC3
+ 1225 0120 48000000 		.word	.LC4
+ 1226 0124 4C000000 		.word	.LC5
+ 1227 0128 60000000 		.word	.LC6
+ 1228 012c 74000000 		.word	.LC7
+ 1229 0130 8C000000 		.word	.LC8
+ 1230 0134 A4000000 		.word	.LC9
+ 1231 0138 AC000000 		.word	.LC10
+ 1232 013c B8000000 		.word	.LC11
+ 1233 0140 C4000000 		.word	.LC12
+ 1234 0144 E8000000 		.word	.LC13
+ 1235 0148 FC000000 		.word	.LC14
+ 1236 014c 00010000 		.word	.LC15
+ 1237              		.cfi_endproc
+ 1238              	.LFE0:
+ 1240              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 lab4.c
+C:\Users\USUARI~2\AppData\Local\Temp\cc5RnJXB.s:1052   .rodata:00000000 $d
+C:\Users\USUARI~2\AppData\Local\Temp\cc5RnJXB.s:1101   .text:00000000 $a
+C:\Users\USUARI~2\AppData\Local\Temp\cc5RnJXB.s:1104   .text:00000000 main
+C:\Users\USUARI~2\AppData\Local\Temp\cc5RnJXB.s:1221   .text:00000110 $d
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+sys_init
+uart0_init
+uart0_puts
+uart0_gets
+uart0_putchar
+uart0_getint
+uart0_putint
+uart0_gethex
+uart0_puthex
