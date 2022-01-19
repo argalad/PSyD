@@ -1,0 +1,46 @@
+15:14:51 **** Build of configuration Debug for project proyecto ****
+cs-make all 
+'Building file: ../proyecto.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -I../../BSP/include -O0 -Wall -Wa,-adhlns="proyecto.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"proyecto.d" -MT"proyecto.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "proyecto.o" "../proyecto.c"
+../proyecto.c:185:6: warning: return type of 'main' is not 'int'
+../proyecto.c: In function 'main':
+../proyecto.c:197:5: warning: implicit declaration of function 'uda1341ts_init'
+../proyecto.c:187:11: warning: unused variable 'i'
+'Finished building: ../proyecto.c'
+' '
+'Building target: proyecto.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"../proyecto.ld" -nostartfiles -L../../BSP/Debug -Wl,-Map,proyecto.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "proyecto.elf"  ./proyecto.o   -lBSP
+'Finished building target: proyecto.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary proyecto.elf  "proyecto.hex"
+'Finished building: proyecto.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S proyecto.elf > "proyecto.lst"
+'Finished building: proyecto.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley proyecto.elf
+   text	   data	    bss	    dec	    hex	filename
+  37188	  39496	   2140	  78824	  133e8	proyecto.elf
+'Finished building: proyecto.siz'
+' '
+15:14:57 **** Incremental Build of configuration Debug for project proyecto ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley proyecto.elf
+   text	   data	    bss	    dec	    hex	filename
+  37188	  39496	   2140	  78824	  133e8	proyecto.elf
+'Finished building: proyecto.siz'
+' '
+15:18:43 **** Incremental Build of configuration Debug for project proyecto ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley proyecto.elf
+   text	   data	    bss	    dec	    hex	filename
+  37188	  39496	   2140	  78824	  133e8	proyecto.elf
+'Finished building: proyecto.siz'
+' '
